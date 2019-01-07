@@ -1,6 +1,6 @@
 {
   "name": "whistle.pinned-ip",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "自动同步本地IP到dnspod.cn的指定域名",
   "main": "./lib",
   "scripts": {
