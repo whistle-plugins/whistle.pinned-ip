@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>填写DNSPod参数</title>
+  <style>
+    html, body {
+      font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "Microsoft Yahei", 微软雅黑, "Hiragino Sans GB", "PingFang SC", STHeiTi, sans-serif;
+      font-size: 14px;
+    }
+
+    #root {
+      width: 460px;
+      margin: 0 auto;
+      padding: 80px 0;
+    }
+    h3 {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+    a {
+      color: #337ab7;
+      text-decoration: none;
+    }
+    label {
+      display: block;
+      margin: 0 0 20px;
+    }
+    label span {
+      display: inline-block;
+      width: 60px;
+      text-align: right;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    label input {
+      width: 300px;
+      height: 34px;
+      padding: 0 12px;
+      font-size: 14px;
+      line-height: 1.42857143;
+      color: #555;
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+      -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+      transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+    button {
+      margin-left: 74px;
+      margin-top: 10px;
+      width: 326px;
+      color: #fff;
+      background-color: #337ab7;
+      border-color: #2e6da4;
+      display: inline-block;
+      padding: 8px 12px;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.42857143;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      background-image: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+    #tips {
+      display: none;
+      text-align: center;
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      padding: 0 20px;
+      line-height: 40px;
+      background-color: #d9534f;
+      border-radius: 3px;
+      color: #fff;
+    }
+    #tips.success {
+      background: #5cb85c;
+    }
+    p {
+      width: 336px;
+      margin-left: 73px;
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <div id="tips">fdsfsfd</div>
+    <h3>按要求填入以下字段(<a href="" target="_blank">查看帮助文档</a>)：</h3>
+    <div>
+      <label>
+          <span>域名:</span>
+          <input id="domain" placeholder="域名只能包含字母、数字、.、-、_" maxlength="128" />
+      </label>
+      <label>
+          <span>ID:</span>
+          <input id="id" placeholder="ID只能包含数字" maxlength="32" />
+      </label>
+      <label>
+          <span>Token:</span>
+          <input id="token" placeholder="Token只能包含字母、数字" maxlength="128" />
+      </label>
+      <button id="submit">提交</button>
+      <p>注意：由于DNS缓存原因，可能需要等待几分钟新IP才能生效。</p>
+    </div>
+  </div>
+  <script src="jquery.js"></script>
+  <script>
+    ;(function() {
+      function showMessage(msg, success) {
+        var tips = $('#tips');
+        tips.text(msg);
+        if (success) {
+          tips.addClass('success');
+        } else {
+          tips.removeClass('success');
+        }
+        tips.stop(true, true).show();
+        tips.css('marginLeft', -tips[0].offsetWidth / 2);
+        tips.delay(2000).fadeOut(1600);
+      }
+
+      function initUI(data) {
+        if (data.id && data.domain && data.token) {
+          $('#id').val(data.id);
+          $('#domain').val(data.domain);
+          $('#token').val(data.token);
+        }
+        $('#submit').click(function() {
+          var domain = $('#domain').val().trim();
+          if (!domain) {
+            return showMessage('域名不能为空');
+          }
+          if (/[^\w.-]/.test(domain)) {
+            return showMessage('域名只能包含字母、数字、.、-、_');
+          }
+          var id = $('#id').val().trim();
+          if (!id) {
+            return showMessage('ID不能为空');
+          }
+          if (/[^\d]/.test(id)) {
+            return showMessage('ID只能包含数字');
+          }
+          var token = $('#token').val().trim();
+          if (!token) {
+            return showMessage('Token不能为空');
+          }
+          if (/[^a-z\d]/i.test(token)) {
+            return showMessage('Token只能包含字母、数字');
+          }
+          $.post({
+            url: 'cgi-bin/set-config',
+            dataType: 'json',
+            data: {
+              id: id,
+              domain: domain,
+              token: token
+            },
+            success: function(data) {
+              if (data.ec) {
+                return showMessage(data.msg);
+              }
+              showMessage('提交成功', true);
+            },
+            error: function() {
+              showMessage('提交失败，请稍后重试！');
+            }
+          });
+        });
+      }
+
+      function loadData() {
+        $.get({
+          url: 'cgi-bin/get-config',
+          dataType: 'json',
+          success: initUI,
+          error: function() {
+            setTimeout(loadData, 1000);
+          }
+        });
+      }
+      function init() {
+        loadData();
+      }
+      init();
+    })();
+  </script>
+</body>
+</html>

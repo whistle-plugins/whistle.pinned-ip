@@ -1,0 +1,23 @@
+{
+  "name": "whistle.pinned-ip",
+  "version": "1.0.0",
+  "description": "自动同步本地IP到dnspod.cn的指定域名",
+  "main": "./lib",
+  "scripts": {
+    "lint": "eslint lib",
+    "lintfix": "eslint --fix lib"
+  },
+  "dependencies": {
+    "dnspod-api": "^1.0.12",
+    "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-onerror": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "eslint": "5.6.0",
+    "eslint-config-imweb": "^0.2.13"
+  }
+}
