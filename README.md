@@ -8,10 +8,7 @@
     npm i -g whistle.pinned-ip
     ```
     > 推荐使用淘宝镜像：` npm i -g whistle.pinned-ip --registry=https://registry.npm.taobao.org`
-3. 安装后通过whistle的管理界面打开配置界面：
-    ![pinned-ip插件管理界面](https://user-images.githubusercontent.com/11450939/50772036-5e378700-12c7-11e9-8335-8a341a8e5e2a.gif)
 
-    动图里面的配置看下面用法。
 ### 使用
 
 1. 需要有一个用[DNSPod](https://www.dnspod.cn/console/dashboard)做DNS服务的域名(如果已存在，可以忽略该步骤)
@@ -27,7 +24,10 @@
 2. ID：`12345`，在DNSPod生成的ID
 3. Token：`8353ad93214a5af5ad94d00411630667`，在DNSPod生成的Token
 
-把生成好的数据填写到插件的配置界面并点击提交，插件将对应域名的DNS指向本机IP，且本机有IP变更会自动同步到DNSPod，最后用域名代替IP作为代理的域名配置手机代理：
+打开插件的管理页面把生成好的数据填上并点击提交：
+![pinned-ip插件管理界面](https://user-images.githubusercontent.com/11450939/50772036-5e378700-12c7-11e9-8335-8a341a8e5e2a.gif)
+
+这样插件将对应域名的DNS指向本机IP，且本机有IP变更会自动同步到DNSPod，最后用域名代替IP作为代理的域名配置手机代理：
 
 ![配置手机代理](https://user-images.githubusercontent.com/11450939/50773118-d5bae580-12ca-11e9-847a-dff3864e656f.png)
 
