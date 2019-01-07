@@ -23,7 +23,7 @@
 
 假设按上述方式获取如下数据：
 
-1. 域名：`local.xxx.com`， 其中：`xxx.com` 为在DNSPod上配的域名，`local` 名称可以自定义
+1. 域名：`local.xxx.com`， 其中：`xxx.com` 为在DNSPod上配的域名，子域名不一定为 `local` 名称可以自定义
 2. ID：`12345`，在DNSPod生成的ID
 3. Token：`8353ad93214a5af5ad94d00411630667`，在DNSPod生成的Token
 
