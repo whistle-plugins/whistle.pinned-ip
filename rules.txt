@@ -1,3 +1,3 @@
 # 通过请求插件uiServer获取规则的方式自动启动插件
 # 禁用插件的时候不再请求
-@whistle.fixed-ip/cgi-bin/update-dns
+@whistle.pinned-ip/cgi-bin/update-dns
