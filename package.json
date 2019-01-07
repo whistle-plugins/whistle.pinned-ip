@@ -1,11 +1,16 @@
 {
   "name": "whistle.pinned-ip",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "自动同步本地IP到dnspod.cn的指定域名",
   "main": "./lib",
   "scripts": {
     "lint": "eslint lib",
     "lintfix": "eslint --fix lib"
+  },
+  "homepage": "http://github.com/whistle-plugins/whistle.pinned-ip",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/whistle-plugins/whistle.pinned-ip.git"
   },
   "dependencies": {
     "dnspod-api": "^1.0.12",
