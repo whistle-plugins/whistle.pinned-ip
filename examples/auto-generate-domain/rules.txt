@@ -1,0 +1,2 @@
+# 通过请求插件uiServer获取规则的方式自动启动插件
+@whistle.pinned-ip-imweb/cgi-bin/update-dns

@@ -1,0 +1,27 @@
+{
+  "name": "@tencent/whistle.pinned-ip-xxx",
+  "version": "1.2.0",
+  "description": "自动生成DNS指向本机IP的域名",
+  "main": "./lib",
+  "scripts": {
+    "lint": "eslint lib",
+    "lintfix": "eslint --fix lib"
+  },
+  "homepage": "http://github.com/yyy/whistle.pinned-ip-xxx",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/yyy/whistle.pinned-ip-xxx.git"
+  },
+  "dependencies": {
+    "dnspod-api": "^1.0.12",
+    "koa": "^2.6.2",
+    "koa-onerror": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "eslint": "5.6.0",
+    "eslint-config-imweb": "^0.2.13"
+  }
+}

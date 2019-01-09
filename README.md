@@ -1,4 +1,6 @@
 # whistle.pinned-ip
+> 本插件是通用的解决方案，如果要自动生成域名的方案可以参考 [auto-generate-domain](./examples/auto-generate-domain)
+
 该whistle插件用于将指定域名绑定本机IP，本机IP发生改变时会自动更新DNS服务器的IP设置，主要解决手机端连自己PC抓包调试工具时，PC的IP跳变需要重新配置手机代理问题。
 
 ### 安装
